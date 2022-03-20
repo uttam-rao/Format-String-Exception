@@ -27,7 +27,12 @@ The name of this class is COSC 69.
 
 ## The role of the stack
 
-printf() takes a variable number of arguments and scans the format string for format specifier to determine the number of arguments. Where are these arguments located? The calling conventions are different based on the system being used but at least some arguments are always taken from the stack. 
+printf() takes a variable number of arguments and scans the format string for format specifier to determine the number of arguments. Where are these arguments located? The calling conventions are different based on the systems being used but at least some arguments are always taken from the stack. For this writeup, knowledge of how the stack works is assumed so a detailed explanation of how the stack works is skipped. Generally speaking, when a local variable or a function argument is declared it gets pushed onto the stack. See the simple example below
+
+```
+printf(“The value of first is %d, the value of second is %d, the address of third is %08x.”, first, second, &third);
+```
+![stack_screenshot](./stack_screenshot.png)
 
 ## How can format strings be exploited
 

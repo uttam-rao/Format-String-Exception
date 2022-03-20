@@ -92,4 +92,23 @@ printf(“%11d%hn”, 1, &target);
 
 The first line above will set the integer target to 11 and write 4 bytes. The second line will only write 2 bytes.
 
+## A short exercise
+
+```
+#include <stdlib.h> 
+#include <stdio.h>
+
+int main(void) {
+    char user_input[100];
+    while(fgets(user_input, sizeof user_input, stdin)) {
+        printf(user_input);
+    }
+}
+
+int get_to_this_func() { 
+    printf("You did it!\n");
+    exit(0); 
+}
+```
+
 

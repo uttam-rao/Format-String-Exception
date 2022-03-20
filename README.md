@@ -34,6 +34,18 @@ printf(“The value of first is %d, the value of second is %d, the address of th
 ```
 ![stack_screenshot](./stack_screenshot.png)
 
-## How can format strings be exploited
+## So what's the issue?
 
-Format function can be exploited in a number of ways when an adversary is given direct control over the format string fed into the function.
+Format functions can be exploited in a number of ways when an adversary is given control over the format string fed into the function, for example, when a program asks for user input. We’ll start with the simplest and arguably the least harmful of the exploits: leaking information. Suppose we have the simple program below which asks user for input and prints it. 
+
+```
+int main(int argc, char **argv){
+    char user_input[100];
+    printf("Please enter a string\n");
+    //get string from user
+    scanf("%s", user_input);
+    // the vulnerability
+    printf(user_input); 
+    return 0;
+}
+```

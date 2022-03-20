@@ -16,3 +16,13 @@ The name of this class is COSC 69.
 ```
 
 %s indicates that the data is a pointer to the string. Besides %s there are several other format specifiers. They are summarized in the table below
+
+| Parameter | Format | Meaning| Passed as |
+| - | - | - | - |
+| %s | string ((const) (unsigned) char *) | data should be pointer to a string | reference |
+| %d | decimal (int) | signed integers in decimal | value |
+| %u | unsigned decimal (unsigned int) | unsigned integer in decimal| value |
+| %x | hexadecimal (unsigned int) | unsigned integer in hex| value |
+| %n | number of bytes written so far, (* int) | numbe | reference |
+
+

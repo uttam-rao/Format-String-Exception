@@ -23,7 +23,7 @@ The name of this class is COSC 69.
 | %d | decimal (int) | signed integers in decimal | value |
 | %u | unsigned decimal (unsigned int) | unsigned integer in decimal| value |
 | %x | hexadecimal (unsigned int) | unsigned integer in hex| value |
-| %n | number of bytes written so far, (* int) | numbe | reference |
+| %n | number of bytes written so far, (* int) | special case: stores number of bytes written so far in argument | reference |
 
 ## The role of the stack
 
@@ -65,11 +65,31 @@ The above was compiled on an x86-64 Linux. As mentioned above the calling conven
 
 ![mac_stack_screenshot](./mac_stack_2.png)
 
+### Looking at data at any address
+
 Remember that %s indicates a string passed by reference, meaning the data on the stack is treated as an address to go fetch the string from. We can use this to look at data at any location in memory since we control the format string and can use it to place any address on the stack. 
 
 ```
 printf(“\xad\xde\xad\xde%x%x%x%s”, first, second, third);
 ```
 
-The above will print the string located at the address 0xdeaddead. The three %x’s are there to get to move the stack pointer towards the format string (of course this will be different for each case). The %s will use the first 4 bytes of the format string as the address of the string that needs to be printed.  
+The above will print the string located at the address 0xdeaddead. The three %x’s are there to get to move the stack pointer towards the format string (of course this will be different for each case). The %s will use the first 4 bytes of the format string as the address of the string that needs to be printed. 
+
+### Writing values
+
+Viewing the stack, leaking program information, and even looking at strings at any address are all issues, but they aren’t so bad, right? Well, the actual problem with format strings is much much worse. Because of the “%n” format specifier, we can actually write values and overwrite memory at any location, which allows us to crash a program with such a vulnerability or even modify data to predetermined values. From the printf() manpage we can see that “%n” is a special case specifier which stores the number of characters written so far into the integer pointed to by the corresponding argument. Below is a simple example:
+```
+int target
+printf(“123%n”, &target);
+```
+
+will set the integer target to 3. Width controlling and length controlling specifiers allow an adversary to reach arbitrary locations (even if the buffer is too small for the number of padding characters) and control exactly how much data is written to the location. For example:
+
+```
+printf(“%11d%n”, 1, &target);
+printf(“%11d%hn”, 1, &target);
+```
+
+The first line above will set the integer target to 11 and write 4 bytes. The second line will only write 2 bytes.
+
 

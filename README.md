@@ -59,3 +59,5 @@ int main(int argc, char **argv){
 If the user inputs “%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x” they will see the next 20 items on the stack and with “%10$x” they will see the tenth element away on the stack. This can lead to leaking program information like return addresses and local variables. 
 
 Now let's look at a real example. 
+
+![mac_stack_screenshot](./mac_stack.png)

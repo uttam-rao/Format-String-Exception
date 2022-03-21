@@ -94,6 +94,8 @@ The first line above will set the integer target to 11 and write 4 bytes. The se
 
 ## A short exercise
 
+Consider the following code. Compile it and look at the global offset table. Your task is to replace the pointer to fgets() with a pointer to get_to_this_func() using a format string attack. Reading this additional tutorial may also prove helpful: http://www.infond.fr/2010/07/tutorial-exploitation-format-string.html. Remember that there are differences between 32 and 64 bit x86 as noted above.
+
 ```
 #include <stdlib.h> 
 #include <stdio.h>
@@ -110,5 +112,7 @@ int get_to_this_func() {
     exit(0); 
 }
 ```
+Note: The following section describes some built in defenses to the format string exploitation in many modern systems. You may need to turn some off just to do the exercise above.
+
 
 

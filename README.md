@@ -60,7 +60,7 @@ int main(int argc, char **argv){
 
 If the user inputs “%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x” they will see the next 20 items on the stack and with “%10$x” they will see the tenth element away on the stack. This can lead to leaking program information like return addresses and local variables. 
 
-Now let's look at a real example. 
+Now let's look at a real example [1]. 
 ![linux_stack_screenshot](./linux_stack.png)
 
 The above was compiled on an x86-64 Linux. As mentioned above the calling conventions are different based on the systems used. For example, with x86-64 on Linux, the second to sixth arguments come from registers and not the stack, so we have to skip over these to get to the stack. The registers are rsi, rdx, rcx, r8, and r9 (highlighted in green). The ASCII for “%016lx” is highlighted in yellow and the 16 bytes of the stack after the return address are highlighted in orange. Below is the same on my mac machine. As can be seen, it is extremely similar but in a different format. The ASCII for “%016lx” is circled in red.
@@ -155,7 +155,7 @@ Modern Linux also has some other defenses like not allowing format strings to ha
 
 Given that the format string attack has been around for decades and is pretty widely known and avoidable through careful programming, is it still relevant today? Are there still high profile occurrences of this vulnerability?
 
-Turns out the answer is yes. As recently as last year, iOS and macOS had a format string bug that permanently disabled the wifi functionality of an iPhone. The following screenshot is from twitter: https://twitter.com/vm_call/status/1405937492642123782. 
+Turns out the answer is yes. As recently as last year, iOS and macOS had a format string bug that permanently disabled the wifi functionality of an iPhone [4]. The following screenshot is from twitter: https://twitter.com/vm_call/status/1405937492642123782. 
 
 ![ios_screenshot](./iOS_format_string.png)
 
@@ -164,10 +164,10 @@ Turns out the answer is yes. As recently as last year, iOS and macOS had a forma
 
 In addition to the various links mentioned throughout this writeup I also used the following resources for information, some very simple code snippets, and for finding recent cases of the vulnerability.
 
-https://www.cs.virginia.edu/~cr4bd/4630/S2017/slides/20170320-slides-1up-animated.pdf
-https://web.ecs.syr.edu/~wedu/Teaching/cis643/LectureNotes_New/Format_String.pdf
-https://medium.com/swlh/binary-exploitation-format-string-vulnerabilities-70edd501c5be
-https://aireye.tech/2021/06/23/the-apple-format-string-bug-from-a-silly-prank-to-an-airborne-attack/
+[1] https://www.cs.virginia.edu/~cr4bd/4630/S2017/slides/20170320-slides-1up-animated.pdf
+[2] https://web.ecs.syr.edu/~wedu/Teaching/cis643/LectureNotes_New/Format_String.pdf
+[3] https://medium.com/swlh/binary-exploitation-format-string-vulnerabilities-70edd501c5be
+[4] https://aireye.tech/2021/06/23/the-apple-format-string-bug-from-a-silly-prank-to-an-airborne-attack/
 
 
 

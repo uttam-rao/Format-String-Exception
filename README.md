@@ -17,13 +17,13 @@ The name of this class is COSC 69.
 
 %s indicates that the data is a pointer to the string. Besides %s there are several other format specifiers. They are summarized in the table below
 
-| Specifier | Format | Meaning | Passed as |
-| - | - | - | - |
-| %s | string ((const) (unsigned) char *) | data should be pointer to a string | reference |
-| %d | decimal (int) | signed integers in decimal | value |
-| %u | unsigned decimal (unsigned int) | unsigned integer in decimal| value |
-| %x | hexadecimal (unsigned int) | unsigned integer in hex| value |
-| %n | number of bytes written so far, (* int) | special case: stores number of bytes written so far in argument | reference |
+| Specifier | Meaning | Passed as |
+| - | - | - | 
+| %s | data should be pointer to a string | reference |
+| %d | signed integers in decimal | value |
+| %u | unsigned integer in decimal| value |
+| %x | unsigned integer in hex| value |
+| %n | special case: stores number of bytes written so far in argument | reference |
 
 ## The role of the stack
 
@@ -120,9 +120,13 @@ Note: The following section describes some built in defenses to the format strin
 The vulnerability of format strings was first discovered in 1989 and originally thought to be harmless. Beginning in 1999 (starting with Tymm Twillman) and in the few years after that, several blogposts, articles, and papers were released detailing the use of format strings for adversarial attacks. Links to some of these follow below
 
 Famous phrack article (2002) - http://phrack.org/issues/59/7.html
+
 Tymm Twillman original attack (1999) - https://seclists.org/bugtraq/1999/Sep/328
+
 Famous attack by Przemislaw Frasunek (2000) - https://marc.info/?l=bugtraq&m=96179429114160&w=2
+
 Famous paper by team Teso (2001) - https://cs155.stanford.edu/papers/formatstring-1.2.pdf
+
 Tim Newsham (2000) - http://forum.ouah.org/FormatString.PDF
 
 ### Defenses
@@ -151,6 +155,7 @@ Given that the format string attack has been around for decades and is pretty wi
 
 Turns out the answer is yes. As recently as last year, iOS and macOS had a format string bug that permanently disabled the wifi functionality of an iPhone. The following screenshot is from twitter: https://twitter.com/vm_call/status/1405937492642123782. 
 
+![ios_screenshot](./iOS_format_string.png)
 
 
 ## Sources

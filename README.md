@@ -1,5 +1,7 @@
-# Format String Exploitation
+# Format String Exploitation Writeup
 ### Uttam Rao (COSC 69) Final Project
+
+In my final project, I delve into the format string exploitation. This writeup contains background on the exploitation, its relevance today, some examples, some defenses, and a simple exercise. 
 
 ## What is a format string?
 
@@ -147,7 +149,7 @@ Mathias Payer and Nicholas Carlini showed that printf() is Turing complete when 
 
 https://github.com/HexHive/printbf
 
-Modern Linux also has some other defenses like not allowing format strings to have “%n” if it is in writable memory as well as adding bounds checks to some standard library functions.
+Modern Linux also has some other defenses like not allowing format strings to have “%n” if it is in writable memory as well as adding bounds checks to some standard library functions. In particular _FORTIFY_SOURCE may be set to 2 in the standard C library (you may need to change this to do the simple exercise in the previous section).
 
 ### Relevance
 

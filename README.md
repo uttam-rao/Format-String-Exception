@@ -115,4 +115,52 @@ int get_to_this_func() {
 Note: The following section describes some built in defenses to the format string exploitation in many modern systems. You may need to turn some off just to do the exercise above.
 
 
+## History, relevance, and defenses
+
+The vulnerability of format strings was first discovered in 1989 and originally thought to be harmless. Beginning in 1999 (starting with Tymm Twillman) and in the few years after that, several blogposts, articles, and papers were released detailing the use of format strings for adversarial attacks. Links to some of these follow below
+
+Famous phrack article (2002) - http://phrack.org/issues/59/7.html
+Tymm Twillman original attack (1999) - https://seclists.org/bugtraq/1999/Sep/328
+Famous attack by Przemislaw Frasunek (2000) - https://marc.info/?l=bugtraq&m=96179429114160&w=2
+Famous paper by team Teso (2001) - https://cs155.stanford.edu/papers/formatstring-1.2.pdf
+Tim Newsham (2000) - http://forum.ouah.org/FormatString.PDF
+
+### Defenses
+
+Given that this exploitation was discovered over twenty years ago, of course there are a few defenses against it. 
+
+The first defense is to fix the issue between the keyboard and the chair, i.e. for the developer to avoid using user inputs for format strings in format functions like printf(). Format strings show that no bug is too small to be exploited. Careful programming is always necessary.
+
+Another defense is for the compiler to detect the potential vulnerability and warn the developer. Many, but not all, compilers do this kind of analysis nowadays, but since there are still no compilation errors this might be easy to miss. 
+
+Another defense is to implement some system countermeasures like address randomization (ASLR), data execution preventions (DEP), and a few other guards. While these may make the attack considerably more difficult and protect against some facets of the attack, they do not make it impossible. In particular, relatively recent work (2017 and later) by Mathias Payer on string oriented programming have shown ways to circumvent ASLR, DEP, and other guards. See the links below 
+
+https://nebelwelt.net/files/11CCC-presentation.pdf
+https://nebelwelt.net/files/13PPREW-presentation.pdf
+
+Interesting fact:
+Mathias Payer and Nicholas Carlini showed that printf() is Turing complete when called in a loop. They created their own Turing-complete language to take advantage of this. The name of the language is a little crude so it is omitted here, but you can check it out for yourself at their github repo at the link below 
+
+https://github.com/HexHive/printbf
+
+Modern Linux also has some other defenses like not allowing format strings to have “%n” if it is in writable memory as well as adding bounds checks to some standard library functions.
+
+### Relevance
+
+Given that the format string attack has been around for decades and is pretty widely known and avoidable through careful programming, is it still relevant today? Are there still high profile occurrences of this vulnerability?
+
+Turns out the answer is yes. As recently as last year, iOS and macOS had a format string bug that permanently disabled the wifi functionality of an iPhone. The following screenshot is from twitter: https://twitter.com/vm_call/status/1405937492642123782. 
+
+
+
+## Sources
+
+In addition to the various links mentioned throughout this writeup I also used the following resources for information, some very simple code snippets, and for finding recent cases of the vulnerability.
+
+https://www.cs.virginia.edu/~cr4bd/4630/S2017/slides/20170320-slides-1up-animated.pdf
+https://web.ecs.syr.edu/~wedu/Teaching/cis643/LectureNotes_New/Format_String.pdf
+https://medium.com/swlh/binary-exploitation-format-string-vulnerabilities-70edd501c5be
+https://aireye.tech/2021/06/23/the-apple-format-string-bug-from-a-silly-prank-to-an-airborne-attack/
+
+
 

@@ -165,9 +165,14 @@ Turns out the answer is yes. As recently as last year, iOS and macOS had a forma
 In addition to the various links mentioned throughout this writeup I also used the following resources for information, some very simple code snippets, and for finding recent cases of the vulnerability.
 
 [1] https://www.cs.virginia.edu/~cr4bd/4630/S2017/slides/20170320-slides-1up-animated.pdf
+
 [2] https://web.ecs.syr.edu/~wedu/Teaching/cis643/LectureNotes_New/Format_String.pdf
+
 [3] https://medium.com/swlh/binary-exploitation-format-string-vulnerabilities-70edd501c5be
+
 [4] https://aireye.tech/2021/06/23/the-apple-format-string-bug-from-a-silly-prank-to-an-airborne-attack/
+
+[5] https://docs.google.com/presentation/d/1RKxlfzff0mZdp-98dNfAMOOa1wQLSK9UN7Nh4E1GlNY/edit#slide=id.g4659c17eb1_0_210
 
 
 
